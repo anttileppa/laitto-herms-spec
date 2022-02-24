@@ -1,0 +1,358 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Laitto API
+security:
+  - bearerAuth: []
+paths:
+
+  /v1/deviceSetups/{deviceSetupId}:
+    get:
+      operationId: findDeviceSetup
+      summary: Find a device setup
+      description: Finds a device setup by id
+      tags:
+        - DeviceSetups
+      parameters:
+        - name: deviceSetupId
+          required: true
+          in: path
+          description: device setup id
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: A session
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DeviceSetup"
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /v1/sessions/{sessionId}:
+    get:
+      operationId: findSession
+      summary: Find a session.
+      description: Finds a session by id
+      tags:
+        - Sessions
+      parameters:
+        - name: sessionId
+          required: true
+          in: path
+          description: session id
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: A session
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Session"
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    put:
+      operationId: updateSession
+      summary: Update session.
+      description: Update a session
+      tags:
+        - Sessions
+      parameters:
+        - name: sessionId
+          required: true
+          in: path
+          description: session id
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: '#/components/schemas/Session'
+        description: Payload
+        required: true
+      responses:
+        "200":
+          description: A session
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Session"
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /v1/sessions/{sessionId}/hermsStatus:
+    get:
+      operationId: findSessionHermsStatus
+      summary: Find a session HERMS status.
+      description: Finds a session HERMS status
+      tags:
+        - SessionHerms
+      parameters:
+        - name: sessionId
+          required: true
+          in: path
+          description: session id
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: A session
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SessionHermsStatus"
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /v1/system/ping:
+    get:
+      summary: System ping endpoint
+      operationId: ping
+      tags:
+        - system
+      responses:
+        '200':
+          description: System ping response
+          content:
+            text/plain:
+              schema:
+                description: Returns PING
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+
+    Session:
+      required:
+        - phase
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        phase:
+          $ref: '#/components/schemas/SessionPhase'
+
+    SessionPhase:
+      type: string
+      enum:
+        - NOT_STARTED
+        - PREPARATION
+        - MASHING
+        - LAUTERING
+        - BOILING
+        - WHIRLPOOLING
+        - FERMENTATION
+        - MATURATION
+        - STORING
+
+    HermsConfig:
+      type: object
+      properties:
+        phases:
+          type: array
+          items:
+            $ref: '#/components/schemas/HermsPhaseConfig'
+
+    HermsPhaseConfig:
+      type: object
+      properties:
+        phase:
+          $ref: '#/components/schemas/SessionPhase'
+        hotLiquidTank:
+          $ref: '#/components/schemas/HermsPhaseHotLiquidTankConfig'
+
+    HermsPhaseHotLiquidTankConfig:
+      type: object
+      properties:
+        targetTemperature:
+          type: number
+          format: float
+        targetVolume:
+          type: number
+          format: float
+
+    SessionHermsStatus:
+      type: object
+      required:
+        - hotLiquidTank
+        - valves
+      properties:
+        hotLiquidTank:
+          $ref: '#/components/schemas/SessionHermsTankStatus'
+        valves:
+          type: array
+          items:
+            $ref: '#/components/schemas/SessionHermsValveStatus'
+
+
+    SessionHermsTankStatus:
+      type: object
+      properties:
+        targetTemperature:
+          type: number
+          format: float
+        targetVolume:
+          type: number
+          format: float
+        heating:
+          type: boolean
+          readOnly: true
+        currentTemperature:
+          type: number
+          format: float
+          readOnly: true
+        currentVolume:
+          type: number
+          format: float
+          readOnly: true
+
+    SessionHermsValveStatus:
+      type: object
+      required:
+        - valveId
+        - open
+      properties:
+        valveId:
+          type: string
+          format: uuid
+        open:
+          type: boolean
+
+    DeviceSetup:
+      type: object
+      required:
+        - valves
+        - hotLiquidTank
+      properties:
+        valves:
+          type: array
+          items:
+            $ref: '#/components/schemas/DeviceSetupValve'
+        hotLiquidTank:
+          $ref: '#/components/schemas/DeviceSetupHotLiquidTank'
+
+    DeviceSetupValve:
+      type: object
+      required:
+        - name
+        - diagramX
+        - diagramY
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        name:
+          type: string
+        diagramX:
+          type: number
+          format: float
+        diagramY:
+          type: number
+          format: float
+
+    DeviceSetupHotLiquidTank:
+      type: object
+      required:
+        - diagramX
+        - diagramY
+        - coldWaterValves
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        diagramX:
+          type: number
+          format: float
+        diagramY:
+          type: number
+          format: float
+        coldWaterValves:
+          type: array
+          items:
+            type: string
+            format: uuid
+
+    Error:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+
+    MqttHermsCommandTopic:
+      type: string
+      enum:
+        - heater_command
+        - valve_command
+
+    MqttHermsStatusTopic:
+      type: string
+      enum:
+        - hot_liquid_tank_status
+
+    MqttHermsHeaterCommandMessage:
+      type: object
+      description: Heater command
+      required:
+        - heat
+      properties:
+        id:
+          type: string
+        heat:
+          type: boolean
+
+    MqttHermsHotLiquidTankStatusMessage:
+      type: object
+      description: Hot liquid tank status message
+      properties:
+        temperature:
+          type: number
+          format: float
+        currentVolume:
+          type: number
+          format: float
+
+
+
