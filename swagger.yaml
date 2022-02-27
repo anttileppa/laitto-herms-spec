@@ -1212,7 +1212,7 @@ components:
       required:
         - diagramX
         - diagramY
-        - role
+        - device
       properties:
         id:
           type: string
@@ -1224,15 +1224,8 @@ components:
         diagramY:
           type: number
           format: float
-        role:
-          $ref: '#/components/schemas/DeviceSetupTankRole'
-
-    DeviceSetupTankRole:
-      type: string
-      enum:
-        - HOT_LIQUID_TANK
-        - MASH_TANK
-        - BOIL_KETTLE
+        device:
+          $ref: '#/components/schemas/DeviceSetupDevice'
 
     DeviceSetupFlow:
       type: object
@@ -1247,29 +1240,21 @@ components:
         path:
           type: string
         input:
-          $ref: '#/components/schemas/DeviceSetupFlowInput'
+          $ref: '#/components/schemas/DeviceSetupDevice'
         output:
-          $ref: '#/components/schemas/DeviceSetupFlowOutput'
+          $ref: '#/components/schemas/DeviceSetupDevice'
         valves:
           type: array
           items:
             type: string
             format: uuid
 
-    DeviceSetupFlowInput:
+    DeviceSetupDevice:
       type: string
       enum:
-        - WATER
+        - WATER_SOURCE
         - HOT_LIQUID_TANK
         - DETERGENT
-        - MASH_TANK
-        - BOIL_KETTLE
-        - COOLER
-
-    DeviceSetupFlowOutput:
-      type: string
-      enum:
-        - HOT_LIQUID_TANK
         - MASH_TANK
         - BOIL_KETTLE
         - COOLER
