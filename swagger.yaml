@@ -1004,7 +1004,7 @@ components:
         - WATER_SOURCE
         - HOT_LIQUID_TANK
         - DETERGENT
-        - MASH_DEVICE
+        - MASH_TANK
         - BOIL_KETTLE
         - COOLER
         - FERMENTOR
