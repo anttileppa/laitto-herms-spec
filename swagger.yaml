@@ -63,11 +63,11 @@ paths:
               schema:
                 $ref: "#/components/schemas/Error"
 
-  /v1/deviceSetups/{deviceSetupId}/valves:
+  /v1/deviceSetups/{deviceSetupId}/devices:
     get:
-      operationId: listDeviceSetupValves
-      summary: Lists device setup valves
-      description: Lists device setup valves
+      operationId: listDeviceSetupDevices
+      summary: Lists device setup devices
+      description: Lists device setup devices
       tags:
         - DeviceSetups
       parameters:
@@ -80,13 +80,13 @@ paths:
             format: uuid
       responses:
         "200":
-          description: A device setup valve
+          description: A device setup device
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/DeviceSetupValve"
+                  $ref: "#/components/schemas/DeviceSetupDevice"
         default:
           description: Error
           content:
@@ -94,9 +94,9 @@ paths:
               schema:
                 $ref: "#/components/schemas/Error"
     post:
-      operationId: createDeviceSetupValve
-      summary: Create device setup valves
-      description: Create device setup valves
+      operationId: createDeviceSetupDevice
+      summary: Create device setup devices
+      description: Create device setup devices
       tags:
         - DeviceSetups
       parameters:
@@ -111,16 +111,16 @@ paths:
         content:
           application/json;charset=utf-8:
             schema:
-              $ref: '#/components/schemas/DeviceSetupValve'
+              $ref: '#/components/schemas/DeviceSetupDevice'
         description: Payload
         required: true
       responses:
         "200":
-          description: Created valve
+          description: Created device
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/DeviceSetupValve"
+                $ref: "#/components/schemas/DeviceSetupDevice"
         default:
           description: Error
           content:
@@ -128,11 +128,11 @@ paths:
               schema:
                 $ref: "#/components/schemas/Error"
 
-  /v1/deviceSetups/{deviceSetupId}/valves/{valveId}:
+  /v1/deviceSetups/{deviceSetupId}/devices/{deviceId}:
     get:
-      operationId: findDeviceSetupValve
-      summary: Find a device setup valve
-      description: Find a device setup valve
+      operationId: findDeviceSetupDevice
+      summary: Find a device setup device
+      description: Find a device setup device
       tags:
         - DeviceSetups
       parameters:
@@ -143,10 +143,10 @@ paths:
           schema:
             type: string
             format: uuid
-        - name: valveId
+        - name: deviceId
           required: true
           in: path
-          description: valve id
+          description: device id
           schema:
             type: string
             format: uuid
@@ -156,7 +156,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/DeviceSetupValve"
+                $ref: "#/components/schemas/DeviceSetupDevice"
         default:
           description: Error
           content:
@@ -164,9 +164,9 @@ paths:
               schema:
                 $ref: "#/components/schemas/Error"
     put:
-      operationId: updateDeviceSetupValve
-      summary: Update device setup valve
-      description: Update a device setup valve
+      operationId: updateDeviceSetupDevice
+      summary: Update device setup device
+      description: Update a device setup device
       tags:
         - DeviceSetups
       parameters:
@@ -177,10 +177,10 @@ paths:
           schema:
             type: string
             format: uuid
-        - name: valveId
+        - name: deviceId
           required: true
           in: path
-          description: valve id
+          description: device id
           schema:
             type: string
             format: uuid
@@ -188,16 +188,16 @@ paths:
         content:
           application/json;charset=utf-8:
             schema:
-              $ref: '#/components/schemas/DeviceSetupValve'
+              $ref: '#/components/schemas/DeviceSetupDevice'
         description: Payload
         required: true
       responses:
         "200":
-          description: A valve
+          description: A device
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/DeviceSetupValve"
+                $ref: "#/components/schemas/DeviceSetupDevice"
         default:
           description: Error
           content:
@@ -205,9 +205,9 @@ paths:
               schema:
                 $ref: "#/components/schemas/Error"
     delete:
-      operationId: deleteDeviceSetupValve
-      summary: Delete device setup valve
-      description: Delete a device setup valve
+      operationId: deleteDeviceSetupDevice
+      summary: Delete device setup device
+      description: Delete a device setup device
       tags:
         - DeviceSetups
       parameters:
@@ -218,10 +218,10 @@ paths:
           schema:
             type: string
             format: uuid
-        - name: valveId
+        - name: deviceId
           required: true
           in: path
-          description: valve id
+          description: device id
           schema:
             type: string
             format: uuid
@@ -235,11 +235,11 @@ paths:
               schema:
                 $ref: "#/components/schemas/Error"
 
-  /v1/deviceSetups/{deviceSetupId}/tanks:
+  /v1/deviceSetups/{deviceSetupId}/pipes:
     get:
-      operationId: listDeviceSetupTanks
-      summary: Lists device setup tanks
-      description: Lists device setup tanks
+      operationId: listDeviceSetupPipes
+      summary: Lists device setup pipes
+      description: Lists device setup pipes
       tags:
         - DeviceSetups
       parameters:
@@ -252,13 +252,13 @@ paths:
             format: uuid
       responses:
         "200":
-          description: A device setup tank
+          description: A device setup pipe
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/DeviceSetupTank"
+                  $ref: "#/components/schemas/DeviceSetupPipe"
         default:
           description: Error
           content:
@@ -266,9 +266,9 @@ paths:
               schema:
                 $ref: "#/components/schemas/Error"
     post:
-      operationId: createDeviceSetupTank
-      summary: Create device setup tanks
-      description: Create device setup tanks
+      operationId: createDeviceSetupPipe
+      summary: Create device setup pipes
+      description: Create device setup pipes
       tags:
         - DeviceSetups
       parameters:
@@ -283,16 +283,16 @@ paths:
         content:
           application/json;charset=utf-8:
             schema:
-              $ref: '#/components/schemas/DeviceSetupTank'
+              $ref: '#/components/schemas/DeviceSetupPipe'
         description: Payload
         required: true
       responses:
         "200":
-          description: Created tank
+          description: Created pipe
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/DeviceSetupTank"
+                $ref: "#/components/schemas/DeviceSetupPipe"
         default:
           description: Error
           content:
@@ -300,11 +300,11 @@ paths:
               schema:
                 $ref: "#/components/schemas/Error"
 
-  /v1/deviceSetups/{deviceSetupId}/tanks/{tankId}:
+  /v1/deviceSetups/{deviceSetupId}/pipes/{pipeId}:
     get:
-      operationId: findDeviceSetupTank
-      summary: Find a device setup tank
-      description: Find a device setup tank
+      operationId: findDeviceSetupPipe
+      summary: Find a device setup pipe
+      description: Find a device setup pipe
       tags:
         - DeviceSetups
       parameters:
@@ -315,10 +315,10 @@ paths:
           schema:
             type: string
             format: uuid
-        - name: tankId
+        - name: pipeId
           required: true
           in: path
-          description: tank id
+          description: pipe id
           schema:
             type: string
             format: uuid
@@ -328,7 +328,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/DeviceSetupTank"
+                $ref: "#/components/schemas/DeviceSetupPipe"
         default:
           description: Error
           content:
@@ -336,9 +336,9 @@ paths:
               schema:
                 $ref: "#/components/schemas/Error"
     put:
-      operationId: updateDeviceSetupTank
-      summary: Update device setup tank
-      description: Update a device setup tank
+      operationId: updateDeviceSetupPipe
+      summary: Update device setup pipe
+      description: Update a device setup pipe
       tags:
         - DeviceSetups
       parameters:
@@ -349,10 +349,10 @@ paths:
           schema:
             type: string
             format: uuid
-        - name: tankId
+        - name: pipeId
           required: true
           in: path
-          description: tank id
+          description: pipe id
           schema:
             type: string
             format: uuid
@@ -360,16 +360,16 @@ paths:
         content:
           application/json;charset=utf-8:
             schema:
-              $ref: '#/components/schemas/DeviceSetupTank'
+              $ref: '#/components/schemas/DeviceSetupPipe'
         description: Payload
         required: true
       responses:
         "200":
-          description: A tank
+          description: A pipe
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/DeviceSetupTank"
+                $ref: "#/components/schemas/DeviceSetupPipe"
         default:
           description: Error
           content:
@@ -377,9 +377,9 @@ paths:
               schema:
                 $ref: "#/components/schemas/Error"
     delete:
-      operationId: deleteDeviceSetupTank
-      summary: Delete device setup tank
-      description: Delete a device setup tank
+      operationId: deleteDeviceSetupPipe
+      summary: Delete device setup pipe
+      description: Delete a device setup pipe
       tags:
         - DeviceSetups
       parameters:
@@ -390,182 +390,10 @@ paths:
           schema:
             type: string
             format: uuid
-        - name: tankId
+        - name: pipeId
           required: true
           in: path
-          description: tank id
-          schema:
-            type: string
-            format: uuid
-      responses:
-        "204":
-          description: A successfull response
-        default:
-          description: Error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-
-  /v1/deviceSetups/{deviceSetupId}/flows:
-    get:
-      operationId: listDeviceSetupFlows
-      summary: Lists device setup flows
-      description: Lists device setup flows
-      tags:
-        - DeviceSetups
-      parameters:
-        - name: deviceSetupId
-          required: true
-          in: path
-          description: device setup id
-          schema:
-            type: string
-            format: uuid
-      responses:
-        "200":
-          description: A device setup flow
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/DeviceSetupFlow"
-        default:
-          description: Error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-    post:
-      operationId: createDeviceSetupFlow
-      summary: Create device setup flows
-      description: Create device setup flows
-      tags:
-        - DeviceSetups
-      parameters:
-        - name: deviceSetupId
-          required: true
-          in: path
-          description: device setup id
-          schema:
-            type: string
-            format: uuid
-      requestBody:
-        content:
-          application/json;charset=utf-8:
-            schema:
-              $ref: '#/components/schemas/DeviceSetupFlow'
-        description: Payload
-        required: true
-      responses:
-        "200":
-          description: Created flow
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/DeviceSetupFlow"
-        default:
-          description: Error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-
-  /v1/deviceSetups/{deviceSetupId}/flows/{flowId}:
-    get:
-      operationId: findDeviceSetupFlow
-      summary: Find a device setup flow
-      description: Find a device setup flow
-      tags:
-        - DeviceSetups
-      parameters:
-        - name: deviceSetupId
-          required: true
-          in: path
-          description: device setup id
-          schema:
-            type: string
-            format: uuid
-        - name: flowId
-          required: true
-          in: path
-          description: flow id
-          schema:
-            type: string
-            format: uuid
-      responses:
-        "200":
-          description: A session
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/DeviceSetupFlow"
-        default:
-          description: Error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-    put:
-      operationId: updateDeviceSetupFlow
-      summary: Update device setup flow
-      description: Update a device setup flow
-      tags:
-        - DeviceSetups
-      parameters:
-        - name: deviceSetupId
-          required: true
-          in: path
-          description: device setup id
-          schema:
-            type: string
-            format: uuid
-        - name: flowId
-          required: true
-          in: path
-          description: flow id
-          schema:
-            type: string
-            format: uuid
-      requestBody:
-        content:
-          application/json;charset=utf-8:
-            schema:
-              $ref: '#/components/schemas/DeviceSetupFlow'
-        description: Payload
-        required: true
-      responses:
-        "200":
-          description: A flow
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/DeviceSetupFlow"
-        default:
-          description: Error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-    delete:
-      operationId: deleteDeviceSetupFlow
-      summary: Delete device setup flow
-      description: Delete a device setup flow
-      tags:
-        - DeviceSetups
-      parameters:
-        - name: deviceSetupId
-          required: true
-          in: path
-          description: device setup id
-          schema:
-            type: string
-            format: uuid
-        - name: flowId
-          required: true
-          in: path
-          description: flow id
+          description: pipe id
           schema:
             type: string
             format: uuid
@@ -722,11 +550,11 @@ paths:
                 $ref: "#/components/schemas/Error"
 
 
-  /v1/deviceSetups/{deviceSetupId}/scenarios/{scenarioId}/valves:
+  /v1/deviceSetups/{deviceSetupId}/scenarios/{scenarioId}/devices:
     get:
-      operationId: listDeviceSetupScenarioValves
-      summary: Lists device setup scenario valves
-      description: Lists device setup scenario valves
+      operationId: listDeviceSetupScenarioDevices
+      summary: Lists device setup scenario devices
+      description: Lists device setup scenario devices
       tags:
         - DeviceSetups
       parameters:
@@ -752,7 +580,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/DeviceSetupScenarioValve"
+                  $ref: "#/components/schemas/DeviceSetupScenarioDevice"
         default:
           description: Error
           content:
@@ -760,9 +588,9 @@ paths:
               schema:
                 $ref: "#/components/schemas/Error"
     post:
-      operationId: createDeviceSetupScenarioValve
-      summary: Create device setup scenario valves
-      description: Create device setup scenario valves
+      operationId: createDeviceSetupScenarioDevice
+      summary: Create device setup scenario devices
+      description: Create device setup scenario devices
       tags:
         - DeviceSetups
       parameters:
@@ -784,7 +612,7 @@ paths:
         content:
           application/json;charset=utf-8:
             schema:
-              $ref: '#/components/schemas/DeviceSetupScenarioValve'
+              $ref: '#/components/schemas/DeviceSetupScenarioDevice'
         description: Payload
         required: true
       responses:
@@ -793,7 +621,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/DeviceSetupScenarioValve"
+                $ref: "#/components/schemas/DeviceSetupScenarioDevice"
         default:
           description: Error
           content:
@@ -801,11 +629,11 @@ paths:
               schema:
                 $ref: "#/components/schemas/Error"
 
-  /v1/deviceSetups/{deviceSetupId}/scenarios/{scenarioId}/valves/{valveId}:
+  /v1/deviceSetups/{deviceSetupId}/scenarios/{scenarioId}/devices/{deviceId}:
     get:
-      operationId: findDeviceSetupScenarioValve
-      summary: Find a device setup scenario valve
-      description: Find a device setup scenario valve
+      operationId: findDeviceSetupScenarioDevice
+      summary: Find a device setup scenario device
+      description: Find a device setup scenario device
       tags:
         - DeviceSetups
       parameters:
@@ -823,10 +651,10 @@ paths:
           schema:
             type: string
             format: uuid
-        - name: valveId
+        - name: deviceId
           required: true
           in: path
-          description: valve id
+          description: device id
           schema:
             type: string
             format: uuid
@@ -836,7 +664,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/DeviceSetupScenarioValve"
+                $ref: "#/components/schemas/DeviceSetupScenarioDevice"
         default:
           description: Error
           content:
@@ -844,9 +672,9 @@ paths:
               schema:
                 $ref: "#/components/schemas/Error"
     put:
-      operationId: updateDeviceSetupScenarioValve
-      summary: Update device setup scenario valve
-      description: Update a device setup scenario valve
+      operationId: updateDeviceSetupScenarioDevice
+      summary: Update device setup scenario device
+      description: Update a device setup scenario device
       tags:
         - DeviceSetups
       parameters:
@@ -864,10 +692,10 @@ paths:
           schema:
             type: string
             format: uuid
-        - name: valveId
+        - name: deviceId
           required: true
           in: path
-          description: valve id
+          description: device id
           schema:
             type: string
             format: uuid
@@ -875,7 +703,7 @@ paths:
         content:
           application/json;charset=utf-8:
             schema:
-              $ref: '#/components/schemas/DeviceSetupScenarioValve'
+              $ref: '#/components/schemas/DeviceSetupScenarioDevice'
         description: Payload
         required: true
       responses:
@@ -884,7 +712,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/DeviceSetupScenarioValve"
+                $ref: "#/components/schemas/DeviceSetupScenarioDevice"
         default:
           description: Error
           content:
@@ -892,9 +720,9 @@ paths:
               schema:
                 $ref: "#/components/schemas/Error"
     delete:
-      operationId: deleteDeviceSetupScenarioValve
-      summary: Delete device setup scenario valve
-      description: Delete a device setup scenario valve
+      operationId: deleteDeviceSetupScenarioDevice
+      summary: Delete device setup scenario device
+      description: Delete a device setup scenario device
       tags:
         - DeviceSetups
       parameters:
@@ -912,10 +740,10 @@ paths:
           schema:
             type: string
             format: uuid
-        - name: valveId
+        - name: deviceId
           required: true
           in: path
-          description: valve id
+          description: device id
           schema:
             type: string
             format: uuid
@@ -1020,35 +848,6 @@ paths:
               schema:
                 $ref: "#/components/schemas/Error"
 
-  /v1/sessions/{sessionId}/hermsStatus:
-    get:
-      operationId: findSessionHermsStatus
-      summary: Find a session HERMS status.
-      description: Finds a session HERMS status
-      tags:
-        - SessionHerms
-      parameters:
-        - name: sessionId
-          required: true
-          in: path
-          description: session id
-          schema:
-            type: string
-            format: uuid
-      responses:
-        "200":
-          description: A session
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/SessionHermsStatus"
-        default:
-          description: Error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-
   /v1/system/ping:
     get:
       summary: System ping endpoint
@@ -1115,10 +914,10 @@ components:
       properties:
         phase:
           $ref: '#/components/schemas/SessionPhase'
-        hotLiquidTank:
-          $ref: '#/components/schemas/HermsPhaseHotLiquidTankConfig'
+        hotLiquidDevice:
+          $ref: '#/components/schemas/HermsPhaseHotLiquidDeviceConfig'
 
-    HermsPhaseHotLiquidTankConfig:
+    HermsPhaseHotLiquidDeviceConfig:
       type: object
       properties:
         targetTemperature:
@@ -1128,21 +927,7 @@ components:
           type: number
           format: float
 
-    SessionHermsStatus:
-      type: object
-      required:
-        - hotLiquidTank
-        - valves
-      properties:
-        hotLiquidTank:
-          $ref: '#/components/schemas/SessionHermsTankStatus'
-        valves:
-          type: array
-          items:
-            $ref: '#/components/schemas/SessionHermsValveStatus'
-
-
-    SessionHermsTankStatus:
+    SessionHermsDeviceStatus:
       type: object
       properties:
         targetTemperature:
@@ -1163,36 +948,21 @@ components:
           format: float
           readOnly: true
 
-    SessionHermsValveStatus:
-      type: object
-      required:
-        - valveId
-        - open
-      properties:
-        valveId:
-          type: string
-          format: uuid
-        open:
-          type: boolean
-
     DeviceSetup:
       type: object
-      required:
-        - valves
-        - tanks
-        - scenarios
       properties:
         id:
           type: string
           format: uuid
           readOnly: true
 
-    DeviceSetupValve:
+    DeviceSetupDevice:
       type: object
       required:
         - name
         - diagramX
         - diagramY
+        - type
       properties:
         id:
           type: string
@@ -1206,56 +976,35 @@ components:
         diagramY:
           type: number
           format: float
+        type:
+          $ref: '#/components/schemas/DeviceSetupDeviceType'
 
-    DeviceSetupTank:
+    DeviceSetupPipe:
       type: object
+      description: Device setup liquid pipe
       required:
-        - diagramX
-        - diagramY
-        - device
+        - inputDeviceId
+        - outputDeviceId
       properties:
         id:
           type: string
           format: uuid
           readOnly: true
-        diagramX:
-          type: number
-          format: float
-        diagramY:
-          type: number
-          format: float
-        device:
-          $ref: '#/components/schemas/DeviceSetupDevice'
-
-    DeviceSetupFlow:
-      type: object
-      description: Device setup liquid flow
-      required:
-        - path
-      properties:
-        id:
+        inputDeviceId:
           type: string
           format: uuid
-          readOnly: true
-        path:
+        outputDeviceId:
           type: string
-        input:
-          $ref: '#/components/schemas/DeviceSetupDevice'
-        output:
-          $ref: '#/components/schemas/DeviceSetupDevice'
-        valves:
-          type: array
-          items:
-            type: string
-            format: uuid
+          format: uuid
 
-    DeviceSetupDevice:
+    DeviceSetupDeviceType:
       type: string
       enum:
+        - VALVE
         - WATER_SOURCE
-        - HOT_LIQUID_TANK
+        - HOT_LIQUID_DEVICE
         - DETERGENT
-        - MASH_TANK
+        - MASH_DEVICE
         - BOIL_KETTLE
         - COOLER
         - FERMENTOR
@@ -1273,34 +1022,35 @@ components:
         type:
           $ref: '#/components/schemas/DeviceSetupScenarioType'
 
-    DeviceSetupScenarioValve:
+    DeviceSetupScenarioDevice:
       type: object
       required:
-        - open
-        - valveId
+        - status
+        - deviceId
       properties:
         id:
           type: string
           format: uuid
           readOnly: true
-        valveId:
+        deviceId:
           type: string
           format: uuid
-        open:
-          type: boolean
-
+        status:
+          type: integer
+          minimum: 0
+          maximum: 100
 
     DeviceSetupScenarioType:
       type: string
       enum:
-        - FILL_HOT_LIQUID_TANK
+        - FILL_HOT_LIQUID_DEVICE
         - FILL_BOIL_KETTLE
-        - CIRCULATE_HOT_LIQUID_TANK
+        - CIRCULATE_HOT_LIQUID_DEVICE
         - CIRCULATE_BOIL_KETTLE
-        - CIRCULATE_MASH_TANK
-        - PUMP_BOIL_KETTLE_TO_MASH_TANK
-        - PUMP_HOT_LIQUID_TANK_TO_MASH_TANK
-        - PUMP_MASH_TANK_TO_BOIL_KETTLE
+        - CIRCULATE_MASH_DEVICE
+        - PUMP_BOIL_KETTLE_TO_MASH_DEVICE
+        - PUMP_HOT_LIQUID_DEVICE_TO_MASH_DEVICE
+        - PUMP_MASH_DEVICE_TO_BOIL_KETTLE
         - PUMP_BOIL_KETTLE_TO_FERMENTOR
         - COOLING
 
@@ -1315,6 +1065,3 @@ components:
           format: int32
         message:
           type: string
-
-
-
