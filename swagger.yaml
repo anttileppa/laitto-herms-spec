@@ -33,6 +33,27 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
+    get:
+      operationId: listDeviceSetups
+      summary: List device setups
+      description: Lists device setups
+      tags:
+        - DeviceSetups
+      responses:
+        "200":
+          description: A device setup
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/DeviceSetup"
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
 
   /v1/deviceSetups/{deviceSetupId}:
     get:
