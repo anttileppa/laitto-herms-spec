@@ -1027,6 +1027,8 @@ components:
         - DETERGENT
         - MASH_TANK
         - BOIL_KETTLE
+        - PUMP
+        - HERMS_COIL
         - COOLER
         - FERMENTOR
         - DRAIN
