@@ -978,14 +978,21 @@ components:
 
     Session:
       required:
+        - name
         - phase
+        - deviceSetupId
       properties:
         id:
           type: string
           format: uuid
           readOnly: true
+        name:
+          type: string
         phase:
           $ref: '#/components/schemas/SessionPhase'
+        deviceSetupId:
+          type: string
+          format: uuid
 
     SessionPhase:
       type: string
