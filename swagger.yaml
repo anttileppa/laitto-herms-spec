@@ -863,7 +863,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/Error"
     get:
-      operationId: listDSessions
+      operationId: listSessions
       summary: List sessions
       description: Lists sessions
       tags:
