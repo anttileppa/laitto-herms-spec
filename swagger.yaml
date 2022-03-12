@@ -83,6 +83,63 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
+    put:
+      operationId: updateDeviceSetup
+      summary: Update device setup
+      description: Update device setup
+      tags:
+        - DeviceSetups
+      parameters:
+        - name: deviceSetupId
+          required: true
+          in: path
+          description: device setup id
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: '#/components/schemas/DeviceSetup'
+        description: Payload
+        required: true
+      responses:
+        "200":
+          description: Updated device setup
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DeviceSetup"
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    delete:
+      operationId: deleteDeviceSetup
+      summary: Delete device setup
+      description: Delete a device setup
+      tags:
+        - DeviceSetups
+      parameters:
+        - name: deviceSetupId
+          required: true
+          in: path
+          description: device setup id
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "204":
+          description: A successfull response
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
 
   /v1/deviceSetups/{deviceSetupId}/devices:
     get:
@@ -971,11 +1028,15 @@ components:
 
     DeviceSetup:
       type: object
+      required:
+        - name
       properties:
         id:
           type: string
           format: uuid
           readOnly: true
+        name:
+          type: string
 
     DeviceSetupDevice:
       type: object
