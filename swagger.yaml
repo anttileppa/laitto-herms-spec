@@ -862,6 +862,27 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
+    get:
+      operationId: listDSessions
+      summary: List sessions
+      description: Lists sessions
+      tags:
+        - Sessions
+      responses:
+        "200":
+          description: sessions
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Session"
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
 
   /v1/sessions/{sessionId}:
     get:
