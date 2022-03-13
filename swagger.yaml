@@ -1132,6 +1132,10 @@ components:
         recipeId:
           type: string
           format: uuid
+        externalSessionId:
+          type: string
+        externalSessionSource:
+          $ref: '#/components/schemas/ExternalSessionSource'
 
     Recipe:
       type: object
@@ -1150,6 +1154,11 @@ components:
           $ref: '#/components/schemas/RecipeSource'
 
     RecipeSource:
+      type: string
+      enum:
+        - BREWFATHER
+
+    ExternalSessionSource:
       type: string
       enum:
         - BREWFATHER
