@@ -1141,11 +1141,19 @@ components:
           $ref: '#/components/schemas/SessionStatus'
 
     SessionStatus:
+      required:
+        - devices
+        - activeScenarios
       properties:
         devices:
           type: array
           items:
             $ref: '#/components/schemas/SessionDeviceStatus'
+        activeScenarios:
+          type: array
+          items:
+            type: string
+            format: uuid
 
     SessionDeviceStatus:
       type: object
@@ -1160,8 +1168,8 @@ components:
           type: number
           format: float
           readOnly: true
-        targetVolume:
-          description: Current target volume for this device. Null if device does not support volume or does not have current target value
+        targetWaterAmount:
+          description: Target water volume for this device. Null if device does not support volume or does not have current target value
           type: number
           format: float
           readOnly: true
@@ -1170,8 +1178,8 @@ components:
           type: number
           format: float
           readOnly: true
-        currentVolume:
-          description: Current volume of this device. Null if device does not support volume or if value is not available
+        currentWaterAmount:
+          description: Current water volume of this device. Null if device does not support volume or if value is not available
           type: number
           format: float
           readOnly: true
@@ -1318,6 +1326,8 @@ components:
       enum:
         - FILL_HOT_LIQUID_TANK
         - FILL_BOIL_KETTLE
+        - HEAT_HOT_LIQUID_TANK
+        - HEAT_BOIL_KETTLE
         - CIRCULATE_HOT_LIQUID_TANK
         - CIRCULATE_BOIL_KETTLE
         - CIRCULATE_MASH_TANK
