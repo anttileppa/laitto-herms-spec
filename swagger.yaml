@@ -1227,12 +1227,15 @@ components:
       type: object
       required:
         - name
+        - controllerId
       properties:
         id:
           type: string
           format: uuid
           readOnly: true
         name:
+          type: string
+        controllerId:
           type: string
 
     DeviceSetupDevice:
@@ -1242,6 +1245,7 @@ components:
         - diagramX
         - diagramY
         - type
+        - controllerIndex
       properties:
         id:
           type: string
@@ -1257,6 +1261,9 @@ components:
           format: float
         type:
           $ref: '#/components/schemas/DeviceSetupDeviceType'
+        controllerIndex:
+          type: integer
+          format: int
 
     DeviceSetupPipe:
       type: object
