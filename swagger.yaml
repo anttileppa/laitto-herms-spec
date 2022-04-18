@@ -1297,6 +1297,7 @@ components:
         - COOLER
         - FERMENTOR
         - DRAIN
+        - PIPE_SPLITTER
 
     DeviceSetupScenario:
       type: object
