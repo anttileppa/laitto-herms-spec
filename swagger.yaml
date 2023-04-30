@@ -1133,7 +1133,6 @@ components:
         - phase
         - deviceSetupId
         - recipeId
-        - status
       properties:
         id:
           type: string
@@ -1157,6 +1156,7 @@ components:
           $ref: '#/components/schemas/SessionStatus'
 
     SessionStatus:
+      readOnly: true
       required:
         - devices
         - activeScenarios
