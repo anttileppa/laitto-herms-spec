@@ -1102,6 +1102,22 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
 
+  /v1/system/syncRecipes:
+    get:
+      summary: Synchronize recipes from external sources
+      operationId: syncRecipes
+      tags:
+        - system
+      responses:
+        '204':
+          description: Empty response indicating success
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
 components:
   securitySchemes:
     bearerAuth:
@@ -1189,11 +1205,15 @@ components:
       required:
         - source
         - sourceId
+        - name
       properties:
         id:
           type: string
           format: uuid
           readOnly: true
+        name:
+          type: string
+          description: Recipe name
         sourceId:
           type: string
           description: Recipe id in the source system
@@ -1297,7 +1317,6 @@ components:
         - COOLER
         - FERMENTOR
         - DRAIN
-        - PIPE_SPLITTER
 
     DeviceSetupScenario:
       type: object
