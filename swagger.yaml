@@ -1317,6 +1317,7 @@ components:
         - COOLER
         - FERMENTOR
         - DRAIN
+        - THERMOMETER
 
     DeviceSetupScenario:
       type: object
