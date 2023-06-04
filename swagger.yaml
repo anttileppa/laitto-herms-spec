@@ -1158,9 +1158,12 @@ components:
     SessionStatus:
       readOnly: true
       required:
+        - brewStatus
         - devices
         - activeScenarios
       properties:
+        brewStatus:
+          $ref: '#/components/schemas/BrewStatus'
         devices:
           type: array
           items:
@@ -1170,6 +1173,16 @@ components:
           items:
             type: string
             format: uuid
+
+    BrewStatus:
+      type: string
+      enum:
+        - PLANNING
+        - BREWING
+        - FERMENTING
+        - CONDITIONING
+        - COMPLETED
+        - ARCHIVED
 
     SessionDeviceStatus:
       type: object
