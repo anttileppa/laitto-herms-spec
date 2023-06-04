@@ -1158,12 +1158,11 @@ components:
     SessionStatus:
       readOnly: true
       required:
-        - brewStatus
+        - currentStage
+        - stages
         - devices
         - activeScenarios
       properties:
-        brewStatus:
-          $ref: '#/components/schemas/BrewStatus'
         devices:
           type: array
           items:
@@ -1173,16 +1172,86 @@ components:
           items:
             type: string
             format: uuid
+        currentStage:
+          type: integer
+          format: int32
+        stages:
+          type: array
+          items:
+            $ref: '#/components/schemas/SessionStageStage'
 
-    BrewStatus:
+    SessionStageStage:
+      type: object
+      required:
+        - type
+      properties:
+        name:
+          type: string
+        paused:
+          type: boolean
+        duration:
+          type: integer
+          format: int32
+        position:
+          type: integer
+        start:
+          type: string
+          format: date-time
+        step:
+          type: integer
+          format: int32
+        type:
+          $ref: '#/components/schemas/SessionStageType'
+        steps:
+          type: array
+          items:
+              $ref: '#/components/schemas/SessionStageStep'
+
+    SessionStageType:
       type: string
       enum:
-        - PLANNING
-        - BREWING
-        - FERMENTING
-        - CONDITIONING
-        - COMPLETED
-        - ARCHIVED
+        - MASH
+        - BOIL
+        - HOP_STAND
+
+    SessionStageStep:
+      type: object
+      properties:
+        duration:
+          type: integer
+          format: int32
+        pauseBefore:
+          type: boolean
+        name:
+          type: string
+        description:
+          type: string
+        time:
+          type: integer
+          format: int32
+        type:
+          $ref: '#/components/schemas/SessionStageStepType'
+        priority:
+          type: integer
+          format: int32
+        value:
+          type: number
+          format: float
+        startTime:
+          type: string
+          format: date-time
+        endTime:
+          type: string
+          format: date-time
+
+    SessionStageStepType:
+      type: string
+      enum:
+        - MASH
+        - EVENT
+        - BOIL
+        - HOPSTAND
+        - RAMP
 
     SessionDeviceStatus:
       type: object
