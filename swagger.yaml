@@ -1183,7 +1183,11 @@ components:
     SessionStageStage:
       type: object
       required:
-        - type
+        - type 
+        - step
+        - position
+        - paused
+        - duration
       properties:
         name:
           type: string
@@ -1216,6 +1220,10 @@ components:
 
     SessionStageStep:
       type: object
+      required:
+        - duration
+        - time
+        - value
       properties:
         duration:
           type: integer
