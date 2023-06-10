@@ -1224,6 +1224,7 @@ components:
         - duration
         - time
         - value
+        - description
       properties:
         duration:
           type: integer
