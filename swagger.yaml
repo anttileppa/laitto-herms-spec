@@ -1402,13 +1402,13 @@ components:
         - HOT_LIQUID_TANK
         - DETERGENT
         - MASH_TANK
+        - MASH_TANK_THERMOMETER
         - BOIL_KETTLE
         - PUMP
         - HERMS_COIL
         - COOLER
         - FERMENTOR
         - DRAIN
-        - THERMOMETER
 
     DeviceSetupScenario:
       type: object
