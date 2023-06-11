@@ -1455,6 +1455,8 @@ components:
         - PUMP_MASH_TANK_TO_BOIL_KETTLE
         - PUMP_BOIL_KETTLE_TO_FERMENTOR
         - COOLING
+        - HEAT_MASH_TANK
+        - COOL_MASH_TANK
 
     Error:
       type: object
