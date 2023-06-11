@@ -1353,6 +1353,7 @@ components:
       type: object
       required:
         - name
+        - deviceId
         - diagramX
         - diagramY
         - type
@@ -1363,6 +1364,8 @@ components:
           format: uuid
           readOnly: true
         name:
+          type: string
+        deviceId:
           type: string
         diagramX:
           type: number
