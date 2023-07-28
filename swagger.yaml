@@ -1354,10 +1354,9 @@ components:
       required:
         - name
         - deviceId
-        - diagramX
-        - diagramY
         - type
         - controllerIndex
+        - properties
       properties:
         id:
           type: string
@@ -1367,17 +1366,42 @@ components:
           type: string
         deviceId:
           type: string
+        type:
+          $ref: '#/components/schemas/DeviceSetupDeviceType'
+        controllerIndex:
+          type: integer
+          format: int
+        properties:
+          $ref: '#/components/schemas/DeviceSetupDeviceProperties'
+
+    DeviceSetupDeviceProperties:
+      type: object
+      required:
+        - diagramX
+        - diagramY
+      properties:
         diagramX:
           type: number
           format: float
         diagramY:
           type: number
           format: float
-        type:
-          $ref: '#/components/schemas/DeviceSetupDeviceType'
-        controllerIndex:
-          type: integer
-          format: int
+        inputPositions:
+          type: array
+          items:
+            $ref: '#/components/schemas/DeviceSetupDeviceIOPosition'
+        outputPositions:
+          type: array
+          items:
+            $ref: '#/components/schemas/DeviceSetupDeviceIOPosition'
+
+    DeviceSetupDeviceIOPosition:
+      type: string
+      enum:
+        - TOP
+        - BOTTOM
+        - LEFT
+        - RIGHT
 
     DeviceSetupPipe:
       type: object
