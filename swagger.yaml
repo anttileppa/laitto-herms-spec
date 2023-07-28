@@ -707,7 +707,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/Error"
 
-  /v1/deviceSetups/{deviceSetupId}/scenarios/{scenarioId}/devices/{deviceId}:
+  /v1/deviceSetups/{deviceSetupId}/scenarios/{scenarioId}/devices/{scenarioDeviceId}:
     get:
       operationId: findDeviceSetupScenarioDevice
       summary: Find a device setup scenario device
@@ -729,10 +729,10 @@ paths:
           schema:
             type: string
             format: uuid
-        - name: deviceId
+        - name: scenarioDeviceId
           required: true
           in: path
-          description: device id
+          description: scenario device id
           schema:
             type: string
             format: uuid
@@ -770,10 +770,10 @@ paths:
           schema:
             type: string
             format: uuid
-        - name: deviceId
+        - name: scenarioDeviceId
           required: true
           in: path
-          description: device id
+          description: scenario device id
           schema:
             type: string
             format: uuid
@@ -818,10 +818,10 @@ paths:
           schema:
             type: string
             format: uuid
-        - name: deviceId
+        - name: scenarioDeviceId
           required: true
           in: path
-          description: device id
+          description: scenario device id
           schema:
             type: string
             format: uuid
@@ -1183,7 +1183,7 @@ components:
     SessionStageStage:
       type: object
       required:
-        - type 
+        - type
         - step
         - position
         - paused
@@ -1209,7 +1209,7 @@ components:
         steps:
           type: array
           items:
-              $ref: '#/components/schemas/SessionStageStep'
+            $ref: '#/components/schemas/SessionStageStep'
 
     SessionStageType:
       type: string
