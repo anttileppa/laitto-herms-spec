@@ -1389,19 +1389,11 @@ components:
         inputPositions:
           type: array
           items:
-            $ref: '#/components/schemas/DeviceSetupDeviceIOPosition'
+            type: string
         outputPositions:
           type: array
           items:
-            $ref: '#/components/schemas/DeviceSetupDeviceIOPosition'
-
-    DeviceSetupDeviceIOPosition:
-      type: string
-      enum:
-        - TOP
-        - BOTTOM
-        - LEFT
-        - RIGHT
+            type: string
 
     DeviceSetupPipe:
       type: object
