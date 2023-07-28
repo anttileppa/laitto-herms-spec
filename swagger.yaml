@@ -1401,6 +1401,7 @@ components:
       type: string
       enum:
         - VALVE
+        - TEE_CONNECTOR
         - WATER_SOURCE
         - HOT_LIQUID_TANK
         - DETERGENT
