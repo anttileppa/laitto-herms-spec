@@ -947,6 +947,103 @@ paths:
               schema:
                 $ref: "#/components/schemas/Error"
 
+  /v1/sessions/{sessionId}/activeScenarios:
+    post:
+      operationId: createSessionActiveScenario
+      summary: Create session active scenario.
+      description: Creates a session active scenario. Method is used to create manual scenario activations, so only mode manual mode requests are accepted.
+      tags:
+        - Sessions
+      parameters:
+        - name: sessionId
+          required: true
+          in: path
+          description: session id
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: '#/components/schemas/SessionActiveScenario'
+        description: Payload
+        required: true
+      responses:
+        "200":
+          description: Created session active scenario
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SessionActiveScenario"
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    get:
+      operationId: listSessionActiveScenarios
+      summary: List session active scenarios
+      description: Lists session active scenarios
+      tags:
+        - Sessions
+      parameters:
+        - name: sessionId
+          required: true
+          in: path
+          description: session id
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: sessions
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/SessionActiveScenario"
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /v1/sessions/{sessionId}/activeScenarios/{activeScenarioId}:
+    delete:
+      operationId: deleteSessionActiveScenario
+      summary: Delete session active scenario
+      description: Delete a session active scenario. Method is used to delete manual scenario activations, so only mode manual requests are accepted. If automatic scenario need to be stopped, use create session active scenario with mode manualOff
+      tags:
+        - Sessions
+      parameters:
+        - name: sessionId
+          required: true
+          in: path
+          description: session id
+          schema:
+            type: string
+            format: uuid
+        - name: activeScenarioId
+          required: true
+          in: path
+          description: active scenario id
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "204":
+          description: A successful response
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
   /v1/recipes:
     post:
       operationId: createRecipe
@@ -1167,11 +1264,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/SessionDeviceStatus'
-        activeScenarios:
-          type: array
-          items:
-            type: string
-            format: uuid
         currentStage:
           type: integer
           format: int32
@@ -1179,6 +1271,24 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/SessionStageStage'
+
+    SessionActiveScenario:
+      required:
+        - scenarioId
+        - mode
+      properties:
+        scenarioId:
+          type: string
+          format: uuid
+        mode:
+          $ref: '#/components/schemas/SessionActiveScenarioMode'
+
+    SessionActiveScenarioMode:
+      type: string
+      enum:
+        - auto
+        - manual
+        - manualOff
 
     SessionStageStage:
       type: object
