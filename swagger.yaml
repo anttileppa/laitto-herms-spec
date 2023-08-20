@@ -1277,6 +1277,10 @@ components:
         - scenarioId
         - mode
       properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
         scenarioId:
           type: string
           format: uuid
