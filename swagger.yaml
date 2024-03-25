@@ -1534,6 +1534,7 @@ components:
         - TEE_CONNECTOR
         - WATER_SOURCE
         - HOT_LIQUID_TANK
+        - HOT_LIQUID_TANK_THERMOMETER
         - DETERGENT
         - MASH_TANK
         - MASH_TANK_THERMOMETER
