@@ -1367,6 +1367,12 @@ components:
         priority:
           type: integer
           format: int32
+        targetMashTemperature:
+          type: number
+          format: float
+        targetHotLiquidTemperature:
+          type: number
+          format: float
 
     SessionStageStep:
       type: object
