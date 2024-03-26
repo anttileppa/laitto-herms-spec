@@ -1294,22 +1294,42 @@ components:
         - manual
         - manualOff
 
-    SessionStageStage:
+    RecipeStageType:
+      type: string
+      enum:
+        - MASH
+        - EVENT
+        - BOIL
+        - HOPSTAND
+        - RAMP
+
+    RecipeStage:
       type: object
       required:
         - type
-        - step
-        - position
-        - paused
         - duration
       properties:
         name:
           type: string
-        paused:
-          type: boolean
         duration:
           type: integer
           format: int32
+        type:
+          $ref: '#/components/schemas/RecipeStageType'
+        steps:
+          type: array
+          items:
+            $ref: '#/components/schemas/RecipeStageStep'
+
+    SessionStageStage:
+      type: object
+      required:
+        - step
+        - position
+        - paused
+      properties:
+        paused:
+          type: boolean
         position:
           type: integer
         start:
@@ -1318,26 +1338,18 @@ components:
         step:
           type: integer
           format: int32
-        type:
-          $ref: '#/components/schemas/SessionStageType'
+        recipeStage:
+          $ref: '#/components/schemas/RecipeStage'
         steps:
           type: array
           items:
             $ref: '#/components/schemas/SessionStageStep'
 
-    SessionStageType:
-      type: string
-      enum:
-        - MASH
-        - BOIL
-        - HOP_STAND
-
-    SessionStageStep:
+    RecipeStageStep:
       type: object
       required:
         - duration
         - time
-        - value
         - description
       properties:
         duration:
@@ -1352,11 +1364,15 @@ components:
         time:
           type: integer
           format: int32
-        type:
-          $ref: '#/components/schemas/SessionStageStepType'
         priority:
           type: integer
           format: int32
+
+    SessionStageStep:
+      type: object
+      required:
+        - value
+      properties:
         value:
           type: number
           format: float
@@ -1366,15 +1382,8 @@ components:
         endTime:
           type: string
           format: date-time
-
-    SessionStageStepType:
-      type: string
-      enum:
-        - MASH
-        - EVENT
-        - BOIL
-        - HOPSTAND
-        - RAMP
+        recipeStep:
+          $ref: '#/components/schemas/RecipeStageStep'
 
     SessionDeviceStatus:
       type: object
