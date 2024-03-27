@@ -1230,7 +1230,7 @@ components:
         - phase
         - deviceSetupId
         - recipeId
-        - currentStageIndex
+        - currentStageType
         - currentStepIndex
         - paused
       properties:
@@ -1248,9 +1248,8 @@ components:
         recipeId:
           type: string
           format: uuid
-        currentStageIndex:
-          type: integer
-          format: int32
+        currentStageType:
+          $ref: '#/components/schemas/RecipeStageType'
         currentStepIndex:
           type: integer
           format: int32
