@@ -1230,6 +1230,9 @@ components:
         - phase
         - deviceSetupId
         - recipeId
+        - currentStageIndex
+        - currentStepIndex
+        - paused
       properties:
         id:
           type: string
@@ -1245,6 +1248,22 @@ components:
         recipeId:
           type: string
           format: uuid
+        currentStageIndex:
+          type: integer
+          format: int32
+        currentStepIndex:
+          type: integer
+          format: int32
+        currentStepProgress:
+          type: integer
+          format: int32
+          readOnly: true
+        currentStepStartTime:
+          type: string
+          format: date-time
+          readOnly: true
+        paused:
+          type: boolean
         externalSessionId:
           type: string
         externalSessionSource:
@@ -1255,7 +1274,6 @@ components:
     SessionStatus:
       readOnly: true
       required:
-        - currentStage
         - stages
         - devices
         - activeScenarios
@@ -1264,9 +1282,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/SessionDeviceStatus'
-        currentStage:
-          type: integer
-          format: int32
         stages:
           type: array
           items:
@@ -1307,13 +1322,11 @@ components:
       type: object
       required:
         - type
-        - duration
       properties:
-        name:
+        id:
           type: string
-        duration:
-          type: integer
-          format: int32
+          format: uuid
+          readOnly: true
         type:
           $ref: '#/components/schemas/RecipeStageType'
         steps:
@@ -1324,20 +1337,15 @@ components:
     SessionStageStage:
       type: object
       required:
-        - step
-        - position
-        - paused
+        - recipeStage
       properties:
-        paused:
-          type: boolean
-        position:
-          type: integer
+        id:
+          type: string
+          format: uuid
+          readOnly: true
         start:
           type: string
           format: date-time
-        step:
-          type: integer
-          format: int32
         recipeStage:
           $ref: '#/components/schemas/RecipeStage'
         steps:
@@ -1350,38 +1358,31 @@ components:
       required:
         - duration
         - time
-        - description
+        - orderNumber
       properties:
         duration:
           type: integer
           format: int32
-        pauseBefore:
-          type: boolean
         name:
-          type: string
-        description:
           type: string
         time:
           type: integer
           format: int32
-        priority:
+        stepIndex:
           type: integer
           format: int32
         targetMashTemperature:
-          type: number
-          format: float
+          type: integer
+          format: int32
         targetHotLiquidTemperature:
-          type: number
-          format: float
+          type: integer
+          format: int32
 
     SessionStageStep:
       type: object
       required:
-        - value
+        - recipeStep
       properties:
-        value:
-          type: number
-          format: float
         startTime:
           type: string
           format: date-time
