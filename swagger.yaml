@@ -1608,6 +1608,7 @@ components:
         - COOLING
         - HEAT_MASH_TANK
         - COOL_MASH_TANK
+        - COOL_HOT_LIQUID_TANK
 
     Error:
       type: object
