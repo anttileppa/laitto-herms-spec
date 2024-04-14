@@ -1500,6 +1500,9 @@ components:
         controllerIndex:
           type: integer
           format: int
+        temperatureCorrection:
+          type: number
+          format: float
         properties:
           $ref: '#/components/schemas/DeviceSetupDeviceProperties'
 
