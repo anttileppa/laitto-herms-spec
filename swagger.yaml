@@ -1552,10 +1552,8 @@ components:
         - TEE_CONNECTOR
         - WATER_SOURCE
         - HOT_LIQUID_TANK
-        - HOT_LIQUID_TANK_THERMOMETER
         - DETERGENT
         - MASH_TANK
-        - MASH_TANK_THERMOMETER
         - BOIL_KETTLE
         - PUMP
         - HERMS_COIL
@@ -1563,6 +1561,10 @@ components:
         - HEATER
         - FERMENTOR
         - DRAIN
+        - MASH_TANK_THERMOMETER
+        - HOT_LIQUID_TANK_THERMOMETER
+        - HERMS_COIL_THERMOMETER
+        - BOIL_KETTLE_THERMOMETER
 
     DeviceSetupScenario:
       type: object
