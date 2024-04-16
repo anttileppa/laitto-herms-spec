@@ -1614,6 +1614,7 @@ components:
         - HEAT_MASH_TANK
         - COOL_MASH_TANK
         - COOL_HOT_LIQUID_TANK
+        - BOIL
 
     Error:
       type: object
