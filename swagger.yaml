@@ -1482,7 +1482,6 @@ components:
       type: object
       required:
         - name
-        - deviceId
         - type
         - controllerIndex
         - properties
