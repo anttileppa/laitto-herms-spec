@@ -1358,6 +1358,7 @@ components:
         - duration
         - time
         - orderNumber
+        - group
       properties:
         duration:
           type: integer
@@ -1376,6 +1377,19 @@ components:
         targetHotLiquidTemperature:
           type: integer
           format: int32
+        group:
+          $ref: '#/components/schemas/RecipeStageStepGroup'
+
+    RecipeStageStepGroup:
+      type: string
+      description: |
+        Recipe stage step group. This does not have any functional meaning, but is used to group steps in the UI.
+        
+        For example, a mash stage could have groups like "Mash in", "Mash rest", "Mash out" etc.
+      enum:
+        - WATER
+        - MASH
+        - BOIL
 
     SessionStageStep:
       type: object
