@@ -1360,6 +1360,10 @@ components:
         - orderNumber
         - group
       properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
         duration:
           type: integer
           format: int32
