@@ -947,6 +947,178 @@ paths:
               schema:
                 $ref: "#/components/schemas/Error"
 
+  /v1/sessions/{sessionId}/recipes:
+    post:
+      operationId: createSessionRecipe
+      summary: Create session recipe.
+      description: Creates a session recipe.
+      tags:
+        - Sessions
+      parameters:
+        - name: sessionId
+          required: true
+          in: path
+          description: session id
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: '#/components/schemas/SessionRecipe'
+        description: Payload
+        required: true
+      responses:
+        "200":
+          description: Created session recipe
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SessionRecipe"
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    get:
+      operationId: listSessionRecipes
+      summary: List session recipes
+      description: Lists session recipes
+      tags:
+        - Sessions
+      parameters:
+        - name: sessionId
+          required: true
+          in: path
+          description: session id
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: session recipes
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/SessionRecipe"
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /v1/sessions/{sessionId}/recipes/{sessionRecipeId}:
+    get:
+      operationId: findSessionRecipe
+      summary: Find a session recipe.
+      description: Finds a session recipe by id
+      tags:
+        - Sessions
+      parameters:
+        - name: sessionId
+          required: true
+          in: path
+          description: session id
+          schema:
+            type: string
+            format: uuid
+        - name: sessionRecipeId
+          required: true
+          in: path
+          description: session recipe id
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: A session recipe
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SessionRecipe"
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    put:
+      operationId: updateSessionRecipe
+      summary: Update session recipe
+      description: Update a session recipe
+      tags:
+        - Sessions
+      parameters:
+        - name: sessionId
+          required: true
+          in: path
+          description: session id
+          schema:
+            type: string
+            format: uuid
+        - name: sessionRecipeId
+          required: true
+          in: path
+          description: session recipe id
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: '#/components/schemas/SessionRecipe'
+        description: Payload
+        required: true
+      responses:
+        "200":
+          description: Updated session recipe
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SessionRecipe"
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    delete:
+      operationId: deleteSessionRecipe
+      summary: Delete session recipe
+      description: Delete a session recipe
+      tags:
+        - Sessions
+      parameters:
+        - name: sessionId
+          required: true
+          in: path
+          description: session id
+          schema:
+            type: string
+            format: uuid
+        - name: sessionRecipeId
+          required: true
+          in: path
+          description: session recipe id
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "204":
+          description: A successful response
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
   /v1/sessions/{sessionId}/activeScenarios:
     post:
       operationId: createSessionActiveScenario
@@ -1037,6 +1209,111 @@ paths:
       responses:
         "204":
           description: A successful response
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /v1/sessions/{sessionId}/recipeSteps:
+    get:
+      operationId: listSessionRecipeSteps
+      summary: List session recipe steps
+      description: List session recipe steps
+      tags:
+        - Sessions
+      parameters:
+        - name: sessionId
+          required: true
+          in: path
+          description: session id
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: session recipe steps
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/SessionRecipeStep"
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /v1/sessions/{sessionId}/recipeSteps/{recipeStepId}:
+    put:
+      operationId: updateSessionRecipeStep
+      summary: Update session recipe step
+      description: Update a session recipe step
+      tags:
+        - Sessions
+      parameters:
+        - name: sessionId
+          required: true
+          in: path
+          description: session id
+          schema:
+            type: string
+            format: uuid
+        - name: recipeStepId
+          required: true
+          in: path
+          description: recipe step id
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: '#/components/schemas/SessionRecipeStep'
+        description: Payload
+        required: true
+      responses:
+        "200":
+          description: Updated session recipe step
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SessionRecipeStep"
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /v1/sessions/{sessionId}/temperatures:
+    get:
+      operationId: listSessionTemperatures
+      summary: List session temperatures
+      description: List session thermometer device temperatures
+      tags:
+        - Sessions
+      parameters:
+        - name: sessionId
+          required: true
+          in: path
+          description: session id
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: session temperatures
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/SessionTemperature"
         default:
           description: Error
           content:
@@ -1229,10 +1506,7 @@ components:
         - name
         - phase
         - deviceSetupId
-        - recipeId
-        - currentStageType
-        - currentStepIndex
-        - paused
+        - recipeIds
       properties:
         id:
           type: string
@@ -1245,46 +1519,114 @@ components:
         deviceSetupId:
           type: string
           format: uuid
+
+    SessionRecipe:
+      type: object
+      required:
+        - recipeId
+        - elapsedTime
+        - paused
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
         recipeId:
           type: string
           format: uuid
-        currentStageType:
-          $ref: '#/components/schemas/RecipeStageType'
-        currentStepIndex:
+        elapsedTime:
           type: integer
           format: int32
-        currentStepProgress:
-          type: integer
-          format: int32
-          readOnly: true
-        currentStepStartTime:
-          type: string
-          format: date-time
-          readOnly: true
+          description: |
+            The current time in seconds since the session recipe was started. This value progresses when the session recipe is not paused.
         paused:
           type: boolean
-        externalSessionId:
-          type: string
-        externalSessionSource:
-          $ref: '#/components/schemas/ExternalSessionSource'
-        status:
-          $ref: '#/components/schemas/SessionStatus'
+          description: |
+            Indicates whether the session is paused for given recipe. When true, the elapsedTime does not progress.
 
-    SessionStatus:
-      readOnly: true
+    SessionTemperature:
+      type: object
       required:
-        - stages
-        - devices
-        - activeScenarios
+        - thermometerDeviceId
+        - temperature
       properties:
-        devices:
-          type: array
-          items:
-            $ref: '#/components/schemas/SessionDeviceStatus'
-        stages:
-          type: array
-          items:
-            $ref: '#/components/schemas/SessionStageStage'
+        thermometerDeviceId:
+          type: string
+          format: uuid
+        temperature:
+          description: |
+            Temperature in degrees Celsius. If measurement is older than 5 minutes, the value is considered stale and will not be reported here.
+          type: integer
+          format: int32
+
+    SessionRecipeStep:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        recipeId:
+          description: |
+            Recipe id for this step. This value is derived from the recipe and is immutable during the session.
+          type: string
+          format: uuid
+          readOnly: true
+        recipeStageType:
+          $ref: '#/components/schemas/RecipeStageType'
+        time:
+          description: |
+            Step start time in seconds since session start.
+
+            This value is derived from the recipe and is immutable during the session.
+          type: integer
+          format: int32
+          readOnly: true
+        duration:
+          description: |
+            Step duration in seconds. 
+
+            This value is derived from the recipe and is immutable during the session.
+          type: integer
+          format: int32
+          readOnly: true
+        name:
+          description: |
+            Step name.
+
+            This value is derived from the recipe and is immutable during the session.
+          type: string
+          readOnly: true
+        targetMashTemperature:
+          description: |
+            Target mash temperature for this step in degrees Celsius. 
+
+            If the step does not have a target temperature, this field will be null. 
+            
+            This value is derived from the recipe and is immutable during the session.
+          type: integer
+          format: int32
+          readOnly: true
+        targetHotLiquidTemperature:
+          description: |
+            Target hot liquid temperature for this step in degrees Celsius. 
+
+            If the step does not have a target temperature, this field will be null. 
+            
+            This value is derived from the recipe and is immutable during the session.
+          type: integer
+          format: int32
+          readOnly: true
+        startedAt:
+          description: |
+            The time when the step was started. Setting this value will mark the step as started.
+          type: integer
+          format: int32
+        completedAt:
+          description: |
+            The time when the step was completed. Setting this value will mark the step as completed.
+          type: integer
+          format: int32
 
     SessionActiveScenario:
       required:
@@ -1333,25 +1675,6 @@ components:
           items:
             $ref: '#/components/schemas/RecipeStageStep'
 
-    SessionStageStage:
-      type: object
-      required:
-        - recipeStage
-      properties:
-        id:
-          type: string
-          format: uuid
-          readOnly: true
-        start:
-          type: string
-          format: date-time
-        recipeStage:
-          $ref: '#/components/schemas/RecipeStage'
-        steps:
-          type: array
-          items:
-            $ref: '#/components/schemas/SessionStageStep'
-
     RecipeStageStep:
       type: object
       required:
@@ -1381,62 +1704,6 @@ components:
         targetHotLiquidTemperature:
           type: integer
           format: int32
-        group:
-          $ref: '#/components/schemas/RecipeStageStepGroup'
-
-    RecipeStageStepGroup:
-      type: string
-      description: |
-        Recipe stage step group. This does not have any functional meaning, but is used to group steps in the UI.
-        
-        For example, a mash stage could have groups like "Mash in", "Mash rest", "Mash out" etc.
-      enum:
-        - WATER
-        - MASH
-        - BOIL
-
-    SessionStageStep:
-      type: object
-      required:
-        - recipeStep
-      properties:
-        startTime:
-          type: string
-          format: date-time
-        endTime:
-          type: string
-          format: date-time
-        recipeStep:
-          $ref: '#/components/schemas/RecipeStageStep'
-
-    SessionDeviceStatus:
-      type: object
-      properties:
-        deviceId:
-          description: Device id
-          type: string
-          format: uuid
-          readOnly: true
-        targetTemperature:
-          description: Current target temperature for this device. Null if device does not support temperature or does not have current target value
-          type: number
-          format: float
-          readOnly: true
-        targetWaterAmount:
-          description: Target water volume for this device. Null if device does not support volume or does not have current target value
-          type: number
-          format: float
-          readOnly: true
-        currentTemperature:
-          description: Current temperature of this device. Null if device does not support temperature or if value is not available
-          type: number
-          format: float
-          readOnly: true
-        currentWaterAmount:
-          description: Current water volume of this device. Null if device does not support volume or if value is not available
-          type: number
-          format: float
-          readOnly: true
 
     Recipe:
       type: object
