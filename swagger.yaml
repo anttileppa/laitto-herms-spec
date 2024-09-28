@@ -1548,16 +1548,31 @@ components:
       type: object
       required:
         - thermometerDeviceId
+        - time
         - temperature
       properties:
         thermometerDeviceId:
           type: string
           format: uuid
+          readOnly: true
+        time:
+          type: string
+          format: date-time
+          description: |
+            Time when the temperature was measured. If measurement is older than 5 minutes, the value should be considered stale
+          readOnly: true
         temperature:
           description: |
-            Temperature in degrees Celsius. If measurement is older than 5 minutes, the value is considered stale and will not be reported here.
-          type: integer
-          format: int32
+            Temperature in degrees Celsius.
+          type: number
+          format: double
+          readOnly: true
+        changePerMinute:
+          type: number
+          format: double
+          description: |
+            Temperature change per minute in degrees Celsius. If measurement is older than 5 minutes, the value is considered stale and will not be reported here.
+          readOnly: true
 
     SessionRecipeStep:
       type: object
