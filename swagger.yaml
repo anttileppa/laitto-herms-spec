@@ -1504,7 +1504,6 @@ components:
     Session:
       required:
         - name
-        - phase
         - deviceSetupId
         - recipeIds
       properties:
@@ -1514,8 +1513,6 @@ components:
           readOnly: true
         name:
           type: string
-        phase:
-          $ref: '#/components/schemas/SessionPhase'
         deviceSetupId:
           type: string
           format: uuid
@@ -1749,19 +1746,6 @@ components:
       type: string
       enum:
         - BREWFATHER
-
-    SessionPhase:
-      type: string
-      enum:
-        - NOT_STARTED
-        - PREPARATION
-        - MASHING
-        - LAUTERING
-        - BOILING
-        - WHIRLPOOLING
-        - FERMENTATION
-        - MATURATION
-        - STORING
 
     DeviceSetup:
       type: object
